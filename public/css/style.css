@@ -1,0 +1,16 @@
+body{
+    background-color: #dd0069;
+    text-align: center;
+}
+.bg{
+    background-color: #337ab7;
+    border-radius: 60px;
+}
+table{
+    background-color: #fff;
+    width:100%;
+    border-radius: 6px;
+}
+td, th{
+    border: 1px solid #000;
+}

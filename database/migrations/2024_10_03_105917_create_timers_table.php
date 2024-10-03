@@ -11,17 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tasks', function (Blueprint $table) {
+        Schema::create('timers', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->string('status')->nullable();
-            $table->timestamp('Created_at')->useCurrent();
-            $table->timestamp('Updated_at')->nullable();
-            $table->timestamp('Ended_at')->nullable();
+            $table->integer('WorkTime'); 
+            $table->integer('BreakTime'); 
+            $table->timestamps(); 
         });
-        
-        
     }
 
     /**
@@ -29,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tasks');
+        Schema::dropIfExists('timers');
     }
 };

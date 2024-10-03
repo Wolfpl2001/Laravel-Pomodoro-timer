@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\TaskController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TaskController;
+use App\Http\Controllers\TimerController;
+use App\Http\Controllers\ProfileController;
 
 Route::get('/', function () {
     return view('auth.login');
@@ -21,7 +22,9 @@ Route::middleware('auth')->group(function () {
     ROute::get('/test', function () {
         return view('test');
     });
-    
+Route::get('/timers/latest', [TimerController::class, 'getLatestTimers'])->middleware('auth');
+Route::post('/timers', [TimerController::class, 'store']);
+Route::put('/timers/{timer}', [TimerController::class, 'update']);
 });
 Route::put('/save-checkbox/{id}', [TaskController::class, 'saveCheckbox'])->name('save.checkbox');
 require __DIR__.'/auth.php';

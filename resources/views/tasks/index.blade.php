@@ -47,18 +47,22 @@
     @foreach ($tasks as $task)
     <tr>
         <td>{{ $task->name }}</td>
-        <td><input type="checkbox" class="myCheckbox" name="status" value="{{$task->id}}"></td>
+        <td>
+            <input type="checkbox" class="myCheckbox" name="status" value="{{$task->id}}" 
+                {{ $task->status == 1 ? 'checked' : '' }}>
+        </td>
         <td>{{ $task->Created_at }}</td>
         <td>{{ $task->Ended_at }}</td>
         <td>
             <table>
-            <form action="{{ route('tasks.destroy', $task->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this task?');">
-                @csrf
-                @method('DELETE')
-                <button type="submit" style="border: none; background: none; cursor: pointer;">
-                    <ion-icon name="trash-outline"></ion-icon>
-                </button>
-            </form>
+                <form action="{{ route('tasks.destroy', $task->id) }}" method="POST" onsubmit="return confirmDelete();">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" style="border: none; background: none; cursor: pointer;">
+                        <ion-icon name="trash-outline"></ion-icon>
+                    </button>
+                </form>
+                
             <form action="{{ route('tasks.update', $task->id) }}" method="POST">
                 @csrf
                 <button type="submit" style="border: none; background: none; cursor: pointer;">
@@ -105,5 +109,9 @@ $(document).ready(function() {
         });
     });
 });
+function confirmDelete() {
+    return confirm('Do you want to delete this task?');
+}
+
     </script>
 </html>

@@ -3,6 +3,9 @@ body{
     text-align: center;
 }
 .bg{
+    padding-top: 5%;
+    padding-bottom: 5%;
+    margin-bottom: 60px;
     background-color: #337ab7;
     border-radius: 60px;
 }
@@ -13,4 +16,41 @@ table{
 }
 td, th{
     border: 1px solid #000;
+}
+button{
+    background-color: #337ab7;
+    color: #fff;
+    border-radius: 6px;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer; 
+}
+button:hover{
+    background-color: #0056b3;
+}
+button:disabled{
+    background-color: #ccc;
+    color: #000;
+    cursor: not-allowed;
+}
+ion-icon{
+    font-size: 20px;
+    color: white;
+    background-color: #337ab7;
+    border-radius: 50%;
+    padding: 5px;
+}
+ion-icon:hover{
+    background-color: #0056b3;
+}
+input[type="checkbox"]{
+    width: 20px;
+    height: 20px;
+    background-color: #337ab7;
+}
+input[type="checkbox"]:hover{
+    background-color: #0056b3;
+}
+input[type="checkbox"]:checked{
+    background-color: #0056b3;
 }

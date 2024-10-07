@@ -15,6 +15,11 @@
 </head>
 <body>
     <div class="bg">
+        @if (session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
         <table>
             <tr>
                 <th>
@@ -48,7 +53,7 @@
     <tr>
         <td>{{ $task->name }}</td>
         <td>
-            <input type="checkbox" class="myCheckbox" name="status" value="{{$task->id}}" 
+            <input type="checkbox" class="myCheckbox" name="status" value="{{$task->id}}"
                 {{ $task->status == 1 ? 'checked' : '' }}>
         </td>
         <td>{{ $task->Created_at }}</td>
@@ -62,19 +67,19 @@
                         <ion-icon name="trash-outline"></ion-icon>
                     </button>
                 </form>
-                
+
             <form action="{{ route('tasks.update', $task->id) }}" method="POST">
                 @csrf
                 <button type="submit" style="border: none; background: none; cursor: pointer;">
                     <ion-icon name="create-outline"></ion-icon>
                 </button>
             </form>
-            
+
         </td>
     </tr>
 </table>
-        
-        
+
+
     @endforeach
 </table>
     </div>

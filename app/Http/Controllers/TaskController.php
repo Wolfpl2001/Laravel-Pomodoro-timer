@@ -17,9 +17,22 @@ class TaskController extends Controller
         return view('tasks.index')->with('tasks', $tasks);
     }
     public function update($id){
+        $task = Task::find($id);
+        $name = $task->name;
+        $date = $task->Created_at;
 
+        return view('tasks.Edit', ['name' => $name, 'date' => $date, 'id' => $id]);
     }
+    public function edit(Request $request, $id)
+    {
+        $name = $request->input('name');
 
+        $task = Task::find($id);
+        $task->name = $name;
+        $task->save();
+
+        return redirect(Route('dashboard'))->with('success', 'Task updated');
+    }
     // Method to store a new task
     public function store(Request $request){
         $validatedData = $request->validate([
@@ -56,13 +69,11 @@ class TaskController extends Controller
             $task = Task::findOrFail($id);
             $task->status = $request->status;
             $task->save();
-    
+
             return response()->json(['success' => true, 'message' => 'Status updated successfully']);
         }catch (\Exception $e) {
                 return response()->json(['success' => false, 'message' => 'An error occurred: ' . $e->getMessage()]);
             }
-            
-
     }
-    
+
 }
